@@ -74,28 +74,12 @@ export default function TableAttendantsStatus(props) {
                     <TableRow>
                         <TableCell>Nome</TableCell>
                         <TableCell align="center">Avaliações</TableCell>
-                        <TableCell align="center">T.M. de Atendimento</TableCell>
-                        <TableCell align="center">Status (Atual)</TableCell>
+                        <TableCell align="center">Tempo Médio Atendimento</TableCell>
+                        <TableCell align="center">Status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                     { renderList() }
-                    {/* <TableRow>
-                        <TableCell>Nome 4</TableCell>
-                        <TableCell align="center">10</TableCell>
-                        <TableCell align="center">10 minutos</TableCell>
-                        <TableCell align="center">
-                            <CheckCircleIcon className={classes.off} />
-                        </TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Nome 5</TableCell>
-                        <TableCell align="center">10</TableCell>
-                        <TableCell align="center">10 minutos</TableCell>
-                        <TableCell align="center">
-                            <CheckCircleIcon className={classes.on} />
-                        </TableCell>
-                    </TableRow> */}
                 </TableBody>
             </Table>
         </TableContainer>

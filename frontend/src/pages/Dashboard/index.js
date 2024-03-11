@@ -15,8 +15,8 @@ import GroupIcon from "@material-ui/icons/Group";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import PersonIcon from "@material-ui/icons/Person";
 import TodayIcon from '@material-ui/icons/Today';
-import BlockIcon from '@material-ui/icons/Block';
-import DoneIcon from '@material-ui/icons/Done';
+//import BlockIcon from '@material-ui/icons/Block';
+//import DoneIcon from '@material-ui/icons/Done';
 
 import { makeStyles } from "@material-ui/core/styles";
 import { grey, blue } from "@material-ui/core/colors";
@@ -289,7 +289,7 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={4}>
             <CardCounter
               icon={<GroupIcon fontSize="inherit" />}
-              title="Atd. Pendentes"
+              title="Atendimentos Pendentes"
               value={counters.supportPending}
               loading={loading}
             />
@@ -297,7 +297,7 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={4}>
             <CardCounter
               icon={<GroupIcon fontSize="inherit" />}
-              title="Atd. Acontecendo"
+              title="Atendimentos Acontecendo"
               value={counters.supportHappening}
               loading={loading}
             />
@@ -305,7 +305,7 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={4}>
             <CardCounter
               icon={<AssignmentIcon fontSize="inherit" />}
-              title="Atd. Realizados"
+              title="Atendimento Finalizados"
               value={counters.supportFinished}
               loading={loading}
             />
@@ -321,7 +321,7 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={4}>
             <CardCounter
               icon={<SpeedIcon fontSize="inherit" />}
-              title="T.M. de Atendimento"
+              title="Tempo Médio Atendimento"
               value={formatTime(counters.avgSupportTime)}
               loading={loading}
             />
@@ -329,7 +329,7 @@ const Dashboard = () => {
           <Grid item xs={12} sm={6} md={4}>
             <CardCounter
               icon={<SpeedIcon fontSize="inherit" />}
-              title="T.M. de Espera"
+              title="Tempo Médio Espera"
               value={formatTime(counters.avgWaitTime)}
               loading={loading}
             />

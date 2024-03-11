@@ -326,6 +326,7 @@ export function QueueOptions({ queueId }) {
   return (
     <div className={classes.root}>
       <br />
+	  {/*
       <Typography>
         Opções
         <Button
@@ -339,6 +340,7 @@ export function QueueOptions({ queueId }) {
           Adicionar
         </Button>
       </Typography>
+      */}
       {renderStepper()}
     </div>
   );

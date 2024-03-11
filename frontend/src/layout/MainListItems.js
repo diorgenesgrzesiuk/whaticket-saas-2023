@@ -274,11 +274,13 @@ const MainListItems = (props) => {
             primary="Kanban"
             icon={<LoyaltyRoundedIcon />}
             />
+	     {/*	
             <ListItemLink
         to="/todolist"
         primary={i18n.t("Tarefas")}
         icon={<BorderColorIcon />}
             />
+	    */}
             <ListItemLink
               to="/contacts"
               primary={i18n.t("mainDrawer.listItems.contacts")}
@@ -294,6 +296,8 @@ const MainListItems = (props) => {
               primary={i18n.t("mainDrawer.listItems.tags")}
               icon={<LocalOfferIcon />}
             />
+
+            {user.super && (
             <ListItemLink
               to="/chats"
               primary={i18n.t("mainDrawer.listItems.chats")}
@@ -303,11 +307,14 @@ const MainListItems = (props) => {
                 </Badge>
               }
             />
+	    )}	    
+            {user.super && (
             <ListItemLink
               to="/helps"
               primary={i18n.t("mainDrawer.listItems.helps")}
               icon={<HelpOutlineIcon />}
             />
+	    )}
           </>
         </>
         )}
@@ -359,7 +366,7 @@ const MainListItems = (props) => {
               {i18n.t("mainDrawer.listItems.administration")}
             </ListSubheader>
             
-            {showCampaigns && (
+            {true && (
               <>
                 <ListItem
                   button
@@ -438,17 +445,20 @@ const MainListItems = (props) => {
               primary={i18n.t("mainDrawer.listItems.users")}
               icon={<PeopleAltOutlinedIcon />}
             />
+	    {user.super && (
             <ListItemLink
               to="/messages-api"
               primary={i18n.t("mainDrawer.listItems.messagesAPI")}
               icon={<CodeRoundedIcon />}
             />
+            )}
+	    {user.super && (
              <ListItemLink
                 to="/financeiro"
                 primary={i18n.t("mainDrawer.listItems.financeiro")}
                 icon={<LocalAtmIcon />}
               />
-
+	    )}
             <ListItemLink
               to="/settings"
               primary={i18n.t("mainDrawer.listItems.settings")}

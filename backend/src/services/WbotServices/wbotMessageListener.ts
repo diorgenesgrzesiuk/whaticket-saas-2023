@@ -277,7 +277,7 @@ const getBodyButton = (msg: proto.IWebMessageInfo): string => {
     let bodyMessage = `*${msg?.message?.viewOnceMessage?.message?.buttonsMessage?.contentText}*`;
 
     for (const buton of msg.message?.viewOnceMessage?.message?.buttonsMessage?.buttons) {
-      bodyMessage += `\n\n${buton.buttonText?.displayText}`;
+      bodyMessage += `\n${buton.buttonText?.displayText}`;
     }
     return bodyMessage;
   }
@@ -286,7 +286,7 @@ const getBodyButton = (msg: proto.IWebMessageInfo): string => {
     let bodyMessage = `*${msg?.message?.viewOnceMessage?.message?.listMessage?.description}*`;
     for (const buton of msg.message?.viewOnceMessage?.message?.listMessage?.sections) {
       for (const rows of buton.rows) {
-        bodyMessage += `\n\n${rows.title}`;
+        bodyMessage += `\n${rows.title}`;
       }
     }
 
@@ -795,16 +795,17 @@ const verifyQueue = async (
     await verifyMessage(sendMsg, ticket, ticket.contact);
   }
 
+  // Menu principal
   const botText = async () => {
     let options = "";
 
     queues.forEach((queue, index) => {
-      options += `*[ ${index + 1} ]* - ${queue.name}\n`;
+      options += `\n*[ ${index + 1} ]* - ${queue.name}`;
     });
 
 
     const textMessage = {
-      text: formatBody(`\u200e${greetingMessage}\n\n${options}`, contact),
+      text: formatBody(`\u200e${greetingMessage}\n${options}`, contact),
     };
 
     const sendMsg = await wbot.sendMessage(
@@ -843,7 +844,7 @@ const verifyQueue = async (
         const endTime = moment(schedule.endTime, "HH:mm");
 
         if (now.isBefore(startTime) || now.isAfter(endTime)) {
-          const body = formatBody(`${queue.outOfHoursMessage}\n\n*[ # ]* - Voltar ao Menu Principal`, ticket.contact);
+          const body = formatBody(`${queue.outOfHoursMessage}\n*[ # ]* - Voltar ao Menu Principal`, ticket.contact);
           const sentMessage = await wbot.sendMessage(
             `${contact.number}@${ticket.isGroup ? "g.us" : "s.whatsapp.net"}`, {
             text: body,
@@ -915,7 +916,13 @@ export const handleRating = async (
       ticket.companyId
     );
 
-    let finalRate = rate;
+    let finalRate = 0;
+
+    if (isNaN(rate)) {
+        finalRate = 1;
+    } else {
+	finalRate = rate;    
+    }
 
     if (rate < 1) {
       finalRate = 1;
@@ -1110,17 +1117,18 @@ const handleChartbot = async (ticket: Ticket, msg: WAMessage, wbot: Session, don
       await verifyMessage(sendMsg, ticket, ticket.contact);
     }
 
+    // Menu Secundario     
     const botText = async () => {
-      let options = "";
+      let options = "\n"
 
       queueOptions.forEach((option, i) => {
         options += `*[ ${option.option} ]* - ${option.title}\n`;
       });
-      options += `\n*[ 0 ]* - Menu anterior`;
+      //options += `\n*[ 0 ]* - Menu anterior`;
       options += `\n*[ # ]* - Menu inicial`;
 
       const textMessage = {
-        text: formatBody(`\u200e${queue.greetingMessage}\n\n${options}`, ticket.contact),
+        text: formatBody(`\u200e${queue.greetingMessage}\n${options}`, ticket.contact),
       };
 
       const sendMsg = await wbot.sendMessage(
@@ -1228,9 +1236,10 @@ const handleChartbot = async (ticket: Ticket, msg: WAMessage, wbot: Session, don
         await verifyMessage(sendMsg, ticket, ticket.contact);
       }
 
+      //Menu Submenu
       const botText = async () => {
 
-        let options = "";
+        let options = "\n";
 
         queueOptions.forEach((option, i) => {
           options += `*[ ${option.option} ]* - ${option.title}\n`;
@@ -1238,7 +1247,7 @@ const handleChartbot = async (ticket: Ticket, msg: WAMessage, wbot: Session, don
         options += `\n*[ 0 ]* - Menu anterior`;
         options += `\n*[ # ]* - Menu inicial`;
         const textMessage = {
-          text: formatBody(`\u200e${currentOption.message}\n\n${options}`, ticket.contact),
+          text: formatBody(`\u200e${currentOption.message}\n${options}`, ticket.contact),
         };
 
         const sendMsg = await wbot.sendMessage(
@@ -1353,8 +1362,6 @@ const handleMessage = async (
 
     const ticket = await FindOrCreateTicketService(contact, wbot.id!, unreadMessages, companyId, groupContact);
 
-
-
     await provider(ticket, msg, companyId, contact, wbot as WASocket);
 
     // voltar para o menu inicial
@@ -1381,7 +1388,6 @@ const handleMessage = async (
         /**
          * Tratamento para avaliação do atendente
          */
-        console.log("passou aqui")
         //  // dev Ricardo: insistir a responder avaliação 
         //  const rate_ = Number(bodyMessage);
 
@@ -1405,7 +1411,6 @@ const handleMessage = async (
         //  // dev Ricardo
 
         if (ticketTraking !== null && verifyRating(ticketTraking)) {
-          console.log("entrou no if")
           handleRating(parseFloat(bodyMessage), ticket, ticketTraking);
           return;
         }
@@ -1434,7 +1439,7 @@ const handleMessage = async (
     try {
       if (!msg.key.fromMe && scheduleType) {
         /**
-         * Tratamento para envio de mensagem quando a empresa está fora do expediente
+         // Tratamento para envio de mensagem quando a empresa está fora do expediente
          */
         if (
           scheduleType.value === "company" &&

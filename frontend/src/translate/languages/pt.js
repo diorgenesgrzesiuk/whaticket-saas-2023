@@ -138,8 +138,9 @@ const messages = {
           importMessage: "Deseja importar todos os contatos do telefone?",
         },
         buttons: {
-          import: "Importar Contatos",
-          add: "Adicionar Contato",
+          import: "Importar",
+          add: "Adicionar",
+          export: "Exportar",
         },
         table: {
           name: "Nome",
@@ -257,7 +258,7 @@ const messages = {
         },
       },
       ticketsQueueSelect: {
-        placeholder: "Filas",
+        placeholder: "Departamentos",
       },
       tickets: {
         toasts: {
@@ -317,7 +318,7 @@ const messages = {
           tickets: "Atendimentos",
           quickMessages: "Respostas Rápidas",
           contacts: "Contatos",
-          queues: "Filas & Chatbot",
+          queues: "Departamentos",
           tags: "Tags",
           administration: "Administração",
           users: "Usuários",
@@ -537,7 +538,7 @@ const messages = {
         title: "Configurações de Campanhas",
       },
       queues: {
-        title: "Filas & Chatbot",
+        title: "Departamentos",
         table: {
           name: "Nome",
           color: "Cor",
@@ -554,7 +555,7 @@ const messages = {
         },
       },
       queueSelect: {
-        inputLabel: "Filas",
+        inputLabel: "Departamentos",
       },
       users: {
         title: "Usuários",
@@ -594,7 +595,7 @@ const messages = {
           actions: "Ações",
         },
         buttons: {
-          add: "Novo Agendamento",
+          add: "Adicionar",
         },
         toasts: {
           deleted: "Agendamento excluído com sucesso.",

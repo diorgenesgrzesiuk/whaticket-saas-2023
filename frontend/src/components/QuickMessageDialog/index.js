@@ -15,7 +15,7 @@ const MessageSchema = Yup.object().shape({
 	shortcode: Yup.string()
 		.min(3, "Too Short!")
 		.max(50, "Too Long!")
-		.required("Required"),
+		.required("Obrigatório"),
     message: Yup.string()
         .min(3, "Too Short!")
         .max(1000, "Too Long!")

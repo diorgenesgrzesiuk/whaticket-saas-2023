@@ -42,7 +42,7 @@ import ColorModeContext from "../layout/themeContext";
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles((theme) => ({
   root: {

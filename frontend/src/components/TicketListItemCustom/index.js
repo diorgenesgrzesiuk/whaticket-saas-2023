@@ -5,7 +5,7 @@ import { parseISO, format, isSameDay } from "date-fns";
 import clsx from "clsx";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { green, grey, red, blue } from "@material-ui/core/colors";
+import { green, grey, blue } from "@material-ui/core/colors";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
@@ -27,14 +27,14 @@ import { TicketsContext } from "../../context/Tickets/TicketsContext";
 import toastError from "../../errors/toastError";
 import { v4 as uuidv4 } from "uuid";
 
-import RoomIcon from '@material-ui/icons/Room';
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+//Import RoomIcon from '@material-ui/icons/Room';
+//import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import AndroidIcon from "@material-ui/icons/Android";
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import TicketMessagesDialog from "../TicketMessagesDialog";
-import DoneIcon from '@material-ui/icons/Done';
-import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
-import contrastColor from "../../helpers/contrastColor";
+//import DoneIcon from '@material-ui/icons/Done';
+//import ClearOutlinedIcon from '@material-ui/icons/ClearOutlined';
+//import contrastColor from "../../helpers/contrastColor";
 import ContactTag from "../ContactTag";
 
 const useStyles = makeStyles((theme) => ({
@@ -130,10 +130,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: green[500],
   },
 
+  /*
   acceptButton: {
     position: "absolute",
     right: "108px",
-  },
+  },*/
 
 
   acceptButton: {
@@ -292,13 +293,13 @@ const useStyles = makeStyles((theme) => ({
         history.push(`/tickets/${ticket.uuid}`);
     };
 	
-	    const handleSendMessage = async (id) => {
-        const msg = `{{ms}} *{{name}}*, meu nome é *${user?.name}* e agora vou prosseguir com seu atendimento!`;
+	const handleSendMessage = async (id) => {
+        const msg = `{{ms}}, *{{name}}*! Meu nome é *${user?.name}* e agora vou prosseguir com seu atendimento.`;
         const message = {
             read: 1,
             fromMe: true,
             mediaUrl: "",
-            body: `*Mensagem Automática:*\n${msg.trim()}`,
+            body: `${msg.trim()}`,
         };
         try {
             await api.post(`/messages/${id}`, message);
